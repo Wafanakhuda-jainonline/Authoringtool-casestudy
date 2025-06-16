@@ -1,0 +1,319 @@
+{
+  "id": "case_1640995200000",
+  "title": "Social Media Crisis Management",
+  "description": "Navigate a viral social media crisis affecting your tech startup's reputation",
+  "course": "Digital Marketing Strategy",
+  "courseCode": "MKT445",
+  "university": "Jain University",
+  "difficulty": "intermediate",
+  "estimatedTime": 20,
+  "learningObjectives": [
+    "Analyze crisis communication strategies in digital environments",
+    "Evaluate the impact of different response approaches on brand reputation",
+    "Apply decision-making frameworks under pressure",
+    "Assess the role of social media in crisis escalation and resolution"
+  ],
+  "levels": [
+    {
+      "id": "level_1",
+      "title": "Crisis Alert",
+      "description": "A viral social media post threatens your startup's reputation",
+      "type": "crisis",
+      "customType": "",
+      "content": {
+        "narrative": "Your tech startup {{companyName}} has just received 1,500 negative comments on social media about a data privacy issue. A viral tweet with {{socialMediaReach}} views claims your app is selling user data. Your current brand reputation score is {{brandReputation}}% and you have {{crisisHours}} hours before this hits mainstream media. How do you respond?",
+        "interactiveElements": [
+          {
+            "id": "element_1",
+            "type": "dropdown",
+            "title": "Choose Your Crisis Response Team Size",
+            "description": "How many people do you want on your immediate response team?",
+            "variableName": "teamSize",
+            "config": {
+              "options": [
+                { "value": "3", "label": "Small team (3 people) - Quick decisions" },
+                { "value": "5", "label": "Medium team (5 people) - Balanced approach" },
+                { "value": "8", "label": "Large team (8 people) - Comprehensive coverage" }
+              ],
+              "placeholder": "Select team size..."
+            },
+            "validation": {
+              "required": true
+            }
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice_1a",
+            "text": "Issue immediate public apology and transparency report",
+            "outcome": "You choose full transparency. The public appreciates your honesty.",
+            "nextLevel": "level_2",
+            "variableChanges": {
+              "responseType": "transparent",
+              "brandReputation": "75",
+              "publicTrust": "high"
+            },
+            "points": 15
+          },
+          {
+            "id": "choice_1b", 
+            "text": "Deny allegations and threaten legal action",
+            "outcome": "You choose an aggressive defense. This escalates the situation.",
+            "nextLevel": "level_3",
+            "variableChanges": {
+              "responseType": "defensive",
+              "brandReputation": "45",
+              "publicTrust": "low"
+            },
+            "points": 5
+          },
+          {
+            "id": "choice_1c",
+            "text": "Stay silent and monitor the situation",
+            "outcome": "You decide to wait and see. Silence can be interpreted as guilt.",
+            "nextLevel": "level_4",
+            "variableChanges": {
+              "responseType": "silent",
+              "brandReputation": "60",
+              "publicTrust": "uncertain"
+            },
+            "points": 8
+          }
+        ]
+      }
+    },
+    {
+      "id": "level_2",
+      "title": "Transparency Wins",
+      "description": "Your transparent approach is gaining positive attention",
+      "type": "evaluation",
+      "content": {
+        "narrative": "Your transparency strategy is working! {{companyName}} has gained {{positiveResponses}} positive responses. Your brand reputation has improved to {{brandReputation}}% and public trust is {{publicTrust}}. Major tech blogs are praising your handling of the crisis. You have a team of {{teamSize}} people coordinating the response. What's your next move?",
+        "interactiveElements": [
+          {
+            "id": "element_2",
+            "type": "slider",
+            "title": "Budget Allocation for Follow-up Actions",
+            "description": "How much of your crisis budget (in thousands) do you want to allocate for follow-up actions?",
+            "variableName": "budgetAllocation",
+            "config": {
+              "min": 10,
+              "max": 100,
+              "defaultValue": 50,
+              "step": 5,
+              "unit": "k",
+              "showValue": true
+            }
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice_2a",
+            "text": "Launch comprehensive data security audit with external firm",
+            "outcome": "A thorough audit builds long-term trust and credibility.",
+            "nextLevel": "level_5",
+            "variableChanges": {
+              "finalOutcome": "excellent",
+              "longTermTrust": "very high"
+            },
+            "points": 20
+          },
+          {
+            "id": "choice_2b",
+            "text": "Create user education campaign about data privacy",
+            "outcome": "Educational approach shows care for user awareness.",
+            "nextLevel": "level_5", 
+            "variableChanges": {
+              "finalOutcome": "good",
+              "longTermTrust": "high"
+            },
+            "points": 15
+          }
+        ]
+      }
+    },
+    {
+      "id": "level_3",
+      "title": "Defensive Backfire",
+      "description": "Your aggressive stance has made things worse",
+      "type": "crisis",
+      "content": {
+        "narrative": "Your defensive approach has backfired! The legal threats have been seen as intimidation tactics. {{companyName}}'s brand reputation has dropped to {{brandReputation}}% and public trust is {{publicTrust}}. News outlets are now investigating more deeply. Your team of {{teamSize}} is struggling to contain the damage. You need damage control immediately.",
+        "interactiveElements": [],
+        "choices": [
+          {
+            "id": "choice_3a",
+            "text": "Pivot to transparency and admit mistakes",
+            "outcome": "A late pivot to honesty helps, but damage is already done.",
+            "nextLevel": "level_6",
+            "variableChanges": {
+              "finalOutcome": "recovery",
+              "longTermTrust": "medium"
+            },
+            "points": 10
+          },
+          {
+            "id": "choice_3b",
+            "text": "Double down and hire crisis PR firm",
+            "outcome": "Professional help is expensive but may save your reputation.",
+            "nextLevel": "level_6",
+            "variableChanges": {
+              "finalOutcome": "partial recovery",
+              "longTermTrust": "low-medium"
+            },
+            "points": 8
+          }
+        ]
+      }
+    },
+    {
+      "id": "level_4", 
+      "title": "Silent Treatment Consequences",
+      "description": "Your silence has been interpreted as admission of guilt",
+      "type": "crisis",
+      "content": {
+        "narrative": "Your silence strategy has not worked well. {{companyName}}'s lack of response has been interpreted negatively. Brand reputation sits at {{brandReputation}}% and public trust is {{publicTrust}}. Competitors are using this against you in their marketing. Your {{teamSize}}-person team is getting overwhelmed with inquiries. Time for action.",
+        "interactiveElements": [],
+        "choices": [
+          {
+            "id": "choice_4a",
+            "text": "Break silence with comprehensive statement",
+            "outcome": "Finally speaking up helps, but you've lost valuable time.",
+            "nextLevel": "level_6",
+            "variableChanges": {
+              "finalOutcome": "late recovery",
+              "longTermTrust": "medium"
+            },
+            "points": 12
+          },
+          {
+            "id": "choice_4b",
+            "text": "Continue silence and focus on product improvements",
+            "outcome": "Actions over words - risky but potentially effective long-term.",
+            "nextLevel": "level_6",
+            "variableChanges": {
+              "finalOutcome": "slow rebuild",
+              "longTermTrust": "uncertain"
+            },
+            "points": 6
+          }
+        ]
+      }
+    },
+    {
+      "id": "level_5",
+      "title": "Success Story",
+      "description": "Your crisis management has become a case study in excellence",
+      "type": "evaluation",
+      "content": {
+        "narrative": "Congratulations! {{companyName}} has turned this crisis into a triumph. Your final outcome is {{finalOutcome}} with {{longTermTrust}} long-term trust from users. The transparency approach, supported by your {{teamSize}}-person team and {{budgetAllocation}}k budget allocation, has become a model for other companies. Tech publications are writing about your crisis response as a best practice example.",
+        "interactiveElements": [],
+        "choices": []
+      }
+    },
+    {
+      "id": "level_6",
+      "title": "Lessons Learned",
+      "description": "Reflecting on the crisis management journey",
+      "type": "evaluation", 
+      "content": {
+        "narrative": "The crisis is over, but there are important lessons to learn. {{companyName}} achieved a {{finalOutcome}} with {{longTermTrust}} long-term trust. Your {{teamSize}}-person response team worked through significant challenges. In crisis management, timing and authenticity are crucial. Different approaches lead to very different outcomes in the digital age.",
+        "interactiveElements": [],
+        "choices": []
+      }
+    }
+  ],
+  "variables": [
+    {
+      "id": "var_1",
+      "name": "companyName",
+      "type": "text",
+      "defaultValue": "TechFlow Solutions",
+      "description": "The name of the startup company",
+      "scope": "global"
+    },
+    {
+      "id": "var_2", 
+      "name": "brandReputation",
+      "type": "number",
+      "defaultValue": "85",
+      "description": "Brand reputation score (0-100)",
+      "scope": "global"
+    },
+    {
+      "id": "var_3",
+      "name": "socialMediaReach", 
+      "type": "number",
+      "defaultValue": "50000",
+      "description": "Number of people reached by viral post",
+      "scope": "global"
+    },
+    {
+      "id": "var_4",
+      "name": "crisisHours",
+      "type": "number", 
+      "defaultValue": "6",
+      "description": "Hours before mainstream media coverage",
+      "scope": "global"
+    },
+    {
+      "id": "var_5",
+      "name": "teamSize",
+      "type": "number",
+      "defaultValue": "3",
+      "description": "Number of people on crisis response team",
+      "scope": "global"
+    },
+    {
+      "id": "var_6",
+      "name": "responseType",
+      "type": "text",
+      "defaultValue": "pending",
+      "description": "Type of crisis response chosen",
+      "scope": "global"
+    },
+    {
+      "id": "var_7",
+      "name": "publicTrust",
+      "type": "text", 
+      "defaultValue": "neutral",
+      "description": "Level of public trust",
+      "scope": "global"
+    },
+    {
+      "id": "var_8",
+      "name": "positiveResponses",
+      "type": "number",
+      "defaultValue": "0",
+      "description": "Number of positive social media responses",
+      "scope": "global"
+    },
+    {
+      "id": "var_9",
+      "name": "budgetAllocation",
+      "type": "number",
+      "defaultValue": "50",
+      "description": "Budget allocated for follow-up actions (in thousands)",
+      "scope": "global"
+    },
+    {
+      "id": "var_10",
+      "name": "finalOutcome",
+      "type": "text",
+      "defaultValue": "pending",
+      "description": "Final outcome of crisis management",
+      "scope": "global"
+    },
+    {
+      "id": "var_11",
+      "name": "longTermTrust",
+      "type": "text",
+      "defaultValue": "neutral",
+      "description": "Long-term trust level achieved",
+      "scope": "global"
+    }
+  ],
+  "theme": "business",
+  "exportedAt": "2024-01-15T10:30:00.000Z",
+  "version": "2.1"
+}

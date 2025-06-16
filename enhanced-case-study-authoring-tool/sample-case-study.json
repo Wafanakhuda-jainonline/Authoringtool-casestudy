@@ -1,0 +1,738 @@
+{
+  "id": "case_1703123456789",
+  "title": "Digital Marketing Strategy: The E-Commerce Challenge",
+  "description": "Navigate the competitive world of digital marketing by making strategic decisions for a growing e-commerce startup",
+  "course": "Digital Marketing & E-Commerce",
+  "courseCode": "24DME201",
+  "university": "Jain University",
+  "difficulty": "intermediate",
+  "estimatedTime": 45,
+  "theme": "business",
+  "learningObjectives": [
+    "Analyze market positioning strategies in competitive digital environments",
+    "Evaluate the effectiveness of different digital marketing channels",
+    "Create data-driven marketing budget allocation decisions",
+    "Apply customer segmentation techniques for targeted campaigns",
+    "Assess the ROI of various marketing initiatives",
+    "Develop crisis management strategies for digital marketing campaigns"
+  ],
+  "variables": [
+    {
+      "id": "var_1703123456790",
+      "name": "marketingBudget",
+      "type": "number",
+      "defaultValue": "50000",
+      "description": "Total marketing budget available for the quarter",
+      "scope": "global"
+    },
+    {
+      "id": "var_1703123456791",
+      "name": "customerAcquisitionCost",
+      "type": "number",
+      "defaultValue": "25",
+      "description": "Current cost to acquire each new customer",
+      "scope": "global"
+    },
+    {
+      "id": "var_1703123456792",
+      "name": "brandAwareness",
+      "type": "number",
+      "defaultValue": "35",
+      "description": "Current brand awareness percentage in target market",
+      "scope": "global"
+    },
+    {
+      "id": "var_1703123456793",
+      "name": "conversionRate",
+      "type": "number",
+      "defaultValue": "2.5",
+      "description": "Website conversion rate percentage",
+      "scope": "global"
+    },
+    {
+      "id": "var_1703123456794",
+      "name": "competitorThreat",
+      "type": "text",
+      "defaultValue": "Medium",
+      "description": "Level of competitive threat in the market",
+      "scope": "global"
+    },
+    {
+      "id": "var_1703123456795",
+      "name": "customerSatisfaction",
+      "type": "number",
+      "defaultValue": "78",
+      "description": "Customer satisfaction score out of 100",
+      "scope": "global"
+    },
+    {
+      "id": "var_1703123456796",
+      "name": "socialMediaFollowers",
+      "type": "number",
+      "defaultValue": "15000",
+      "description": "Total social media followers across all platforms",
+      "scope": "global"
+    },
+    {
+      "id": "var_1703123456797",
+      "name": "emailSubscribers",
+      "type": "number",
+      "defaultValue": "8500",
+      "description": "Number of email newsletter subscribers",
+      "scope": "global"
+    }
+  ],
+  "levels": [
+    {
+      "id": "level_1703123456800",
+      "title": "Market Analysis & Initial Strategy",
+      "description": "Analyze the current market situation and set initial strategic direction",
+      "type": "introduction",
+      "customType": "",
+      "content": {
+        "narrative": "Welcome to TechStyle, a rapidly growing e-commerce startup specializing in sustainable fashion. You've just been hired as the Digital Marketing Manager. The company has a quarterly budget of ${{marketingBudget}} and currently spends ${{customerAcquisitionCost}} to acquire each customer. Your brand awareness stands at {{brandAwareness}}% in your target market, with a website conversion rate of {{conversionRate}}%. The competitive landscape is heating up, and you need to make strategic decisions to maintain growth while optimizing costs. Your first task is to conduct a comprehensive market analysis and gather key performance indicators.",
+        "interactiveElements": [
+          {
+            "id": "element_1703123456801",
+            "type": "textInput",
+            "title": "Target Market Definition",
+            "description": "Define your primary target market segment (age, demographics, interests)",
+            "variableName": "targetMarket",
+            "config": {
+              "placeholder": "e.g., Millennials aged 25-35, environmentally conscious, urban professionals",
+              "maxLength": 200
+            },
+            "validation": {
+              "required": true,
+              "minValue": null,
+              "maxValue": null,
+              "pattern": ""
+            },
+            "conditions": []
+          },
+          {
+            "id": "element_1703123456802",
+            "type": "slider",
+            "title": "Budget Allocation Priority",
+            "description": "What percentage of your budget should focus on customer acquisition vs. retention?",
+            "variableName": "acquisitionFocus",
+            "config": {
+              "min": 0,
+              "max": 100,
+              "defaultValue": 60,
+              "step": 5,
+              "unit": "%",
+              "showValue": true
+            },
+            "validation": {
+              "required": false,
+              "minValue": null,
+              "maxValue": null,
+              "pattern": ""
+            },
+            "conditions": []
+          },
+          {
+            "id": "element_1703123456803",
+            "type": "priorityRanking",
+            "title": "Marketing Channel Priorities",
+            "description": "Rank these marketing channels by priority for your strategy (drag to reorder)",
+            "variableName": "channelPriorities",
+            "config": {
+              "options": [
+                { "value": "social_media", "label": "Social Media Marketing" },
+                { "value": "google_ads", "label": "Google Ads (PPC)" },
+                { "value": "email_marketing", "label": "Email Marketing" },
+                { "value": "influencer", "label": "Influencer Partnerships" },
+                { "value": "content_marketing", "label": "Content Marketing & SEO" },
+                { "value": "affiliate", "label": "Affiliate Marketing" }
+              ]
+            },
+            "validation": {
+              "required": true,
+              "minValue": null,
+              "maxValue": null,
+              "pattern": ""
+            },
+            "conditions": []
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice_1703123456810",
+            "text": "Focus on aggressive customer acquisition to capture market share quickly",
+            "outcome": "You decide to prioritize rapid growth. This increases your customer acquisition cost but potentially captures more market share before competitors react.",
+            "nextLevel": null,
+            "variableChanges": {
+              "customerAcquisitionCost": "35",
+              "brandAwareness": "45",
+              "competitorThreat": "High"
+            },
+            "conditions": [],
+            "points": 15
+          },
+          {
+            "id": "choice_1703123456811",
+            "text": "Balance acquisition and retention with a data-driven approach",
+            "outcome": "You choose a balanced strategy, focusing on sustainable growth while optimizing existing customer relationships.",
+            "nextLevel": null,
+            "variableChanges": {
+              "customerAcquisitionCost": "28",
+              "customerSatisfaction": "82",
+              "conversionRate": "3.1"
+            },
+            "conditions": [],
+            "points": 20
+          },
+          {
+            "id": "choice_1703123456812",
+            "text": "Prioritize customer retention and lifetime value optimization",
+            "outcome": "You focus on maximizing value from existing customers. This improves satisfaction but may slow new customer growth.",
+            "nextLevel": null,
+            "variableChanges": {
+              "customerSatisfaction": "85",
+              "conversionRate": "3.5",
+              "brandAwareness": "32"
+            },
+            "conditions": [],
+            "points": 18
+          }
+        ],
+        "conditions": [],
+        "variableUpdates": {},
+        "metrics": {}
+      }
+    },
+    {
+      "id": "level_1703123456820",
+      "title": "Campaign Development & Budget Allocation",
+      "description": "Design your marketing campaigns and allocate budget across channels",
+      "type": "strategy",
+      "customType": "",
+      "content": {
+        "narrative": "Based on your initial analysis, you now need to develop specific campaigns and allocate your ${{marketingBudget}} budget. Your current customer acquisition cost is ${{customerAcquisitionCost}} and brand awareness is at {{brandAwareness}}%. The marketing team is ready to execute, but they need clear direction on budget allocation and campaign priorities. You have {{socialMediaFollowers}} social media followers and {{emailSubscribers}} email subscribers to leverage.",
+        "interactiveElements": [
+          {
+            "id": "element_1703123456821",
+            "type": "calculator",
+            "title": "Budget Allocation Calculator",
+            "description": "Calculate your budget allocation across different marketing channels",
+            "variableName": "budgetCalculation",
+            "config": {
+              "inputs": [
+                { "name": "socialMediaBudget", "label": "Social Media Budget", "type": "number" },
+                { "name": "ppcBudget", "label": "PPC/Google Ads Budget", "type": "number" },
+                { "name": "emailBudget", "label": "Email Marketing Budget", "type": "number" },
+                { "name": "influencerBudget", "label": "Influencer Budget", "type": "number" }
+              ],
+              "formula": "socialMediaBudget + ppcBudget + emailBudget + influencerBudget",
+              "resultLabel": "Total Allocated Budget"
+            },
+            "validation": {
+              "required": false,
+              "minValue": null,
+              "maxValue": null,
+              "pattern": ""
+            },
+            "conditions": []
+          },
+          {
+            "id": "element_1703123456822",
+            "type": "multiSelect",
+            "title": "Campaign Types Selection",
+            "description": "Select all campaign types you want to implement this quarter",
+            "variableName": "campaignTypes",
+            "config": {
+              "options": [
+                { "value": "brand_awareness", "label": "Brand Awareness Campaign" },
+                { "value": "product_launch", "label": "New Product Launch" },
+                { "value": "seasonal_promotion", "label": "Seasonal Promotion" },
+                { "value": "retargeting", "label": "Retargeting Campaign" },
+                { "value": "loyalty_program", "label": "Customer Loyalty Program" },
+                { "value": "referral", "label": "Referral Program" }
+              ],
+              "minSelections": 2,
+              "maxSelections": 4
+            },
+            "validation": {
+              "required": true,
+              "minValue": null,
+              "maxValue": null,
+              "pattern": ""
+            },
+            "conditions": []
+          },
+          {
+            "id": "element_1703123456823",
+            "type": "dropdown",
+            "title": "Primary Campaign Focus",
+            "description": "What should be the primary focus of your marketing campaigns?",
+            "variableName": "campaignFocus",
+            "config": {
+              "options": [
+                { "value": "awareness", "label": "Brand Awareness & Reach" },
+                { "value": "conversion", "label": "Conversion & Sales" },
+                { "value": "engagement", "label": "Customer Engagement" },
+                { "value": "retention", "label": "Customer Retention" }
+              ],
+              "placeholder": "Select primary campaign focus..."
+            },
+            "validation": {
+              "required": true,
+              "minValue": null,
+              "maxValue": null,
+              "pattern": ""
+            },
+            "conditions": []
+          },
+          {
+            "id": "element_1703123456824",
+            "type": "textArea",
+            "title": "Campaign Creative Strategy",
+            "description": "Describe your creative strategy and key messaging for the campaigns",
+            "variableName": "creativeStrategy",
+            "config": {
+              "placeholder": "Describe your creative approach, key messages, visual style, and how it aligns with your brand values...",
+              "rows": 4,
+              "maxLength": 500
+            },
+            "validation": {
+              "required": true,
+              "minValue": null,
+              "maxValue": null,
+              "pattern": ""
+            },
+            "conditions": []
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice_1703123456830",
+            "text": "Launch an aggressive multi-channel campaign with high budget allocation",
+            "outcome": "You decide to go big with a comprehensive campaign across all channels. This maximizes reach but increases risk and cost.",
+            "nextLevel": null,
+            "variableChanges": {
+              "marketingBudget": "45000",
+              "brandAwareness": "55",
+              "customerAcquisitionCost": "40"
+            },
+            "conditions": [],
+            "points": 15
+          },
+          {
+            "id": "choice_1703123456831",
+            "text": "Focus on 2-3 high-performing channels with optimized budget allocation",
+            "outcome": "You choose a focused approach, concentrating resources on proven channels for better ROI and easier management.",
+            "nextLevel": null,
+            "variableChanges": {
+              "marketingBudget": "48000",
+              "conversionRate": "3.8",
+              "customerAcquisitionCost": "22"
+            },
+            "conditions": [],
+            "points": 25
+          },
+          {
+            "id": "choice_1703123456832",
+            "text": "Start with a conservative test-and-learn approach",
+            "outcome": "You opt for a cautious strategy, testing small campaigns before scaling. This reduces risk but may limit immediate impact.",
+            "nextLevel": null,
+            "variableChanges": {
+              "marketingBudget": "52000",
+              "customerAcquisitionCost": "20",
+              "brandAwareness": "38"
+            },
+            "conditions": [],
+            "points": 20
+          }
+        ],
+        "conditions": [],
+        "variableUpdates": {},
+        "metrics": {}
+      }
+    },
+    {
+      "id": "level_1703123456840",
+      "title": "Campaign Execution & Performance Monitoring",
+      "description": "Execute your campaigns and monitor real-time performance metrics",
+      "type": "simulation",
+      "customType": "",
+      "content": {
+        "narrative": "Your campaigns are now live! After 4 weeks of execution, the data is coming in. Your current metrics show: Brand awareness at {{brandAwareness}}%, conversion rate at {{conversionRate}}%, and customer acquisition cost at ${{customerAcquisitionCost}}. You have {{socialMediaFollowers}} social media followers and customer satisfaction is at {{customerSatisfaction}}%. However, a major competitor just launched a similar campaign, and you're seeing some unexpected results. You need to make quick decisions to optimize performance.",
+        "interactiveElements": [
+          {
+            "id": "element_1703123456841",
+            "type": "numberInput",
+            "title": "Performance Target Adjustment",
+            "description": "Set your new target conversion rate (%) based on current performance",
+            "variableName": "targetConversionRate",
+            "config": {
+              "min": 1,
+              "max": 10,
+              "step": 0.1,
+              "placeholder": "Enter target conversion rate"
+            },
+            "validation": {
+              "required": true,
+              "minValue": 1,
+              "maxValue": 10,
+              "pattern": ""
+            },
+            "conditions": []
+          },
+          {
+            "id": "element_1703123456842",
+            "type": "slider",
+            "title": "Budget Reallocation",
+            "description": "What percentage of remaining budget should go to the best-performing channel?",
+            "variableName": "budgetReallocation",
+            "config": {
+              "min": 20,
+              "max": 80,
+              "defaultValue": 50,
+              "step": 5,
+              "unit": "%",
+              "showValue": true
+            },
+            "validation": {
+              "required": false,
+              "minValue": null,
+              "maxValue": null,
+              "pattern": ""
+            },
+            "conditions": []
+          },
+          {
+            "id": "element_1703123456843",
+            "type": "dropdown",
+            "title": "Competitive Response Strategy",
+            "description": "How should you respond to the competitor's campaign?",
+            "variableName": "competitiveResponse",
+            "config": {
+              "options": [
+                { "value": "aggressive", "label": "Launch aggressive counter-campaign" },
+                { "value": "differentiate", "label": "Differentiate with unique value proposition" },
+                { "value": "ignore", "label": "Continue current strategy, ignore competitor" },
+                { "value": "collaborate", "label": "Explore partnership opportunities" }
+              ],
+              "placeholder": "Select your competitive response..."
+            },
+            "validation": {
+              "required": true,
+              "minValue": null,
+              "maxValue": null,
+              "pattern": ""
+            },
+            "conditions": []
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice_1703123456850",
+            "text": "Double down on the best-performing channel and pause underperforming ones",
+            "outcome": "You reallocate budget to your top channel. This improves efficiency but reduces diversification and reach.",
+            "nextLevel": null,
+            "variableChanges": {
+              "conversionRate": "4.2",
+              "customerAcquisitionCost": "18",
+              "brandAwareness": "42"
+            },
+            "conditions": [],
+            "points": 20
+          },
+          {
+            "id": "choice_1703123456851",
+            "text": "Optimize all channels with A/B testing and gradual improvements",
+            "outcome": "You implement systematic testing across all channels. This takes time but leads to sustainable improvements.",
+            "nextLevel": null,
+            "variableChanges": {
+              "conversionRate": "3.6",
+              "customerSatisfaction": "83",
+              "brandAwareness": "48"
+            },
+            "conditions": [],
+            "points": 25
+          },
+          {
+            "id": "choice_1703123456852",
+            "text": "Launch a crisis response campaign to address competitive pressure",
+            "outcome": "You quickly launch a defensive campaign. This maintains market position but increases costs significantly.",
+            "nextLevel": null,
+            "variableChanges": {
+              "marketingBudget": "42000",
+              "brandAwareness": "52",
+              "customerAcquisitionCost": "45"
+            },
+            "conditions": [],
+            "points": 15
+          }
+        ],
+        "conditions": [],
+        "variableUpdates": {},
+        "metrics": {}
+      }
+    },
+    {
+      "id": "level_1703123456860",
+      "title": "Crisis Management & Strategic Pivot",
+      "description": "Handle an unexpected crisis and make strategic adjustments",
+      "type": "crisis",
+      "customType": "",
+      "content": {
+        "narrative": "BREAKING: A major influencer you partnered with has been involved in a controversy, and it's affecting your brand reputation. Social media sentiment is turning negative, and you're seeing a 15% drop in website traffic. Your customer satisfaction has dropped to {{customerSatisfaction}}%, and the competitive threat level is now {{competitorThreat}}. You have limited time and budget remaining (${{marketingBudget}}) to address this crisis while maintaining your marketing objectives. Your team is looking to you for decisive leadership.",
+        "interactiveElements": [
+          {
+            "id": "element_1703123456861",
+            "type": "textArea",
+            "title": "Crisis Communication Strategy",
+            "description": "Draft your crisis communication message for social media and email",
+            "variableName": "crisisMessage",
+            "config": {
+              "placeholder": "Write your crisis communication message addressing the situation, your brand values, and next steps...",
+              "rows": 5,
+              "maxLength": 300
+            },
+            "validation": {
+              "required": true,
+              "minValue": null,
+              "maxValue": null,
+              "pattern": ""
+            },
+            "conditions": []
+          },
+          {
+            "id": "element_1703123456862",
+            "type": "multiSelect",
+            "title": "Immediate Action Items",
+            "description": "Select all immediate actions you want to take (select multiple)",
+            "variableName": "crisisActions",
+            "config": {
+              "options": [
+                { "value": "pause_influencer", "label": "Pause all influencer campaigns immediately" },
+                { "value": "public_statement", "label": "Issue public statement distancing from influencer" },
+                { "value": "customer_outreach", "label": "Direct outreach to concerned customers" },
+                { "value": "media_response", "label": "Proactive media response strategy" },
+                { "value": "internal_review", "label": "Internal review of partnership processes" },
+                { "value": "community_engagement", "label": "Increase community engagement efforts" }
+              ],
+              "minSelections": 2,
+              "maxSelections": 5
+            },
+            "validation": {
+              "required": true,
+              "minValue": null,
+              "maxValue": null,
+              "pattern": ""
+            },
+            "conditions": []
+          },
+          {
+            "id": "element_1703123456863",
+            "type": "slider",
+            "title": "Emergency Budget Allocation",
+            "description": "What percentage of remaining budget should go to crisis management?",
+            "variableName": "crisisBudget",
+            "config": {
+              "min": 10,
+              "max": 70,
+              "defaultValue": 30,
+              "step": 5,
+              "unit": "%",
+              "showValue": true
+            },
+            "validation": {
+              "required": false,
+              "minValue": null,
+              "maxValue": null,
+              "pattern": ""
+            },
+            "conditions": []
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice_1703123456870",
+            "text": "Take full responsibility and launch a comprehensive reputation recovery campaign",
+            "outcome": "You take ownership and invest heavily in reputation management. This shows integrity but is costly and time-consuming.",
+            "nextLevel": null,
+            "variableChanges": {
+              "customerSatisfaction": "75",
+              "brandAwareness": "40",
+              "marketingBudget": "35000"
+            },
+            "conditions": [],
+            "points": 25
+          },
+          {
+            "id": "choice_1703123456871",
+            "text": "Distance the brand quickly and pivot to alternative marketing channels",
+            "outcome": "You quickly cut ties and shift strategy. This minimizes damage but may appear reactive to stakeholders.",
+            "nextLevel": null,
+            "variableChanges": {
+              "competitorThreat": "Medium",
+              "customerAcquisitionCost": "30",
+              "brandAwareness": "35"
+            },
+            "conditions": [],
+            "points": 20
+          },
+          {
+            "id": "choice_1703123456872",
+            "text": "Wait for the situation to blow over while maintaining current campaigns",
+            "outcome": "You decide to weather the storm without major changes. This preserves budget but risks prolonged negative impact.",
+            "nextLevel": null,
+            "variableChanges": {
+              "customerSatisfaction": "65",
+              "brandAwareness": "30",
+              "competitorThreat": "High"
+            },
+            "conditions": [],
+            "points": 10
+          }
+        ],
+        "conditions": [],
+        "variableUpdates": {},
+        "metrics": {}
+      }
+    },
+    {
+      "id": "level_1703123456880",
+      "title": "Performance Analysis & Future Strategy",
+      "description": "Analyze campaign results and plan future marketing strategy",
+      "type": "evaluation",
+      "customType": "",
+      "content": {
+        "narrative": "The quarter is ending, and it's time to evaluate your performance. Your final metrics show: Brand awareness at {{brandAwareness}}%, conversion rate at {{conversionRate}}%, customer acquisition cost of ${{customerAcquisitionCost}}, and customer satisfaction at {{customerSatisfaction}}%. You have {{socialMediaFollowers}} social media followers and {{emailSubscribers}} email subscribers. The remaining budget is ${{marketingBudget}}. The board wants a comprehensive analysis of your performance and recommendations for the next quarter. Your decisions this quarter will influence the company's marketing strategy going forward.",
+        "interactiveElements": [
+          {
+            "id": "element_1703123456881",
+            "type": "textArea",
+            "title": "Performance Analysis Summary",
+            "description": "Provide a comprehensive analysis of your marketing performance this quarter",
+            "variableName": "performanceAnalysis",
+            "config": {
+              "placeholder": "Analyze your key metrics, successes, challenges, and lessons learned from this quarter's campaigns...",
+              "rows": 6,
+              "maxLength": 600
+            },
+            "validation": {
+              "required": true,
+              "minValue": null,
+              "maxValue": null,
+              "pattern": ""
+            },
+            "conditions": []
+          },
+          {
+            "id": "element_1703123456882",
+            "type": "priorityRanking",
+            "title": "Next Quarter Priorities",
+            "description": "Rank your priorities for next quarter's marketing strategy",
+            "variableName": "nextQuarterPriorities",
+            "config": {
+              "options": [
+                { "value": "customer_retention", "label": "Customer Retention & Loyalty" },
+                { "value": "market_expansion", "label": "Market Expansion & New Segments" },
+                { "value": "brand_building", "label": "Brand Building & Awareness" },
+                { "value": "conversion_optimization", "label": "Conversion Rate Optimization" },
+                { "value": "cost_efficiency", "label": "Cost Efficiency & ROI Improvement" },
+                { "value": "innovation", "label": "Marketing Innovation & New Channels" }
+              ]
+            },
+            "validation": {
+              "required": true,
+              "minValue": null,
+              "maxValue": null,
+              "pattern": ""
+            },
+            "conditions": []
+          },
+          {
+            "id": "element_1703123456883",
+            "type": "numberInput",
+            "title": "Next Quarter Budget Request",
+            "description": "What budget are you requesting for next quarter? (in USD)",
+            "variableName": "nextQuarterBudget",
+            "config": {
+              "min": 30000,
+              "max": 100000,
+              "step": 1000,
+              "placeholder": "Enter budget request"
+            },
+            "validation": {
+              "required": true,
+              "minValue": 30000,
+              "maxValue": 100000,
+              "pattern": ""
+            },
+            "conditions": []
+          },
+          {
+            "id": "element_1703123456884",
+            "type": "textInput",
+            "title": "Key Success Metric",
+            "description": "What will be your primary success metric for next quarter?",
+            "variableName": "primaryMetric",
+            "config": {
+              "placeholder": "e.g., Customer Lifetime Value, Brand Awareness, Conversion Rate",
+              "maxLength": 100
+            },
+            "validation": {
+              "required": true,
+              "minValue": null,
+              "maxValue": null,
+              "pattern": ""
+            },
+            "conditions": []
+          }
+        ],
+        "choices": [
+          {
+            "id": "choice_1703123456890",
+            "text": "Recommend aggressive expansion with increased budget for market dominance",
+            "outcome": "You propose an ambitious growth strategy. The board is impressed with your confidence and approves increased investment.",
+            "nextLevel": null,
+            "variableChanges": {
+              "marketingBudget": "75000",
+              "competitorThreat": "High",
+              "brandAwareness": "60"
+            },
+            "conditions": [],
+            "points": 20
+          },
+          {
+            "id": "choice_1703123456891",
+            "text": "Focus on optimization and sustainable growth with current resources",
+            "outcome": "You recommend a balanced approach focusing on efficiency. The board appreciates your prudent strategy and sustainable thinking.",
+            "nextLevel": null,
+            "variableChanges": {
+              "customerSatisfaction": "88",
+              "conversionRate": "4.5",
+              "customerAcquisitionCost": "15"
+            },
+            "conditions": [],
+            "points": 30
+          },
+          {
+            "id": "choice_1703123456892",
+            "text": "Propose a conservative approach with focus on ROI and risk management",
+            "outcome": "You suggest a cautious strategy prioritizing proven channels. The board values your risk-conscious approach but questions growth potential.",
+            "nextLevel": null,
+            "variableChanges": {
+              "marketingBudget": "55000",
+              "customerAcquisitionCost": "12",
+              "brandAwareness": "45"
+            },
+            "conditions": [],
+            "points": 25
+          }
+        ],
+        "conditions": [],
+        "variableUpdates": {},
+        "metrics": {}
+      }
+    }
+  ],
+  "exportedAt": "2024-01-15T10:30:00.000Z",
+  "version": "2.1"
+}
