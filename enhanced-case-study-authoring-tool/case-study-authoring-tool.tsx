@@ -714,7 +714,7 @@ Return ONLY a JSON array of level objects:
       return processedText;
     };
 
-    const generateInteractiveElementHTML = (element) => {
+const generateInteractiveElementHTML = (element) => {
       switch (element.type) {
         case "textInput":
           return `
@@ -741,6 +741,20 @@ Return ONLY a JSON array of level objects:
                    class="form-input">
           </div>`
 
+        case "textArea":
+          return `
+          <div class="interactive-element">
+            <h4>${element.title}</h4>
+            <p>${element.description}</p>
+            <textarea id="${element.id}" data-variable="${element.variableName}"
+                      placeholder="${(element.config.placeholder || "").replace(/"/g, '&quot;')}"
+                      maxlength="${element.config.maxLength || 2000}"
+                      rows="${element.config.rows || 4}"
+                      onchange="updateVariable('${element.variableName}', this.value)"
+                      class="form-input"
+                      style="resize: vertical; min-height: 100px;"></textarea>
+          </div>`
+
         case "dropdown":
           return `
           <div class="interactive-element">
@@ -762,6 +776,34 @@ Return ONLY a JSON array of level objects:
             </select>
           </div>`
 
+        case "multiSelect":
+          return `
+          <div class="interactive-element">
+            <h4>${element.title}</h4>
+            <p>${element.description}</p>
+            <div class="multi-select-container" id="${element.id}_container">
+              ${
+                element.config.options
+                  ?.map(
+                    (opt, idx) => `
+                <div style="display: block; width: 100%; padding: 8px 0; margin: 2px 0;">
+                  <input type="checkbox" value="${opt.value.replace(/"/g, '&quot;')}" 
+                         id="${element.id}_option_${idx}"
+                         onchange="updateMultiSelectVariable('${element.variableName}', '${element.id}')"
+                         data-element-id="${element.id}"
+                         style="margin-right: 8px; vertical-align: middle;">
+                  <label for="${element.id}_option_${idx}" style="cursor: pointer; vertical-align: middle; display: inline; font-size: 14px;">
+                    ${opt.label.replace(/"/g, '&quot;')}
+                  </label>
+                </div>
+              `,
+                  )
+                  .join("") || ""
+              }
+            </div>
+            <div class="multi-select-summary" id="${element.id}_summary" style="margin-top: 12px; padding: 8px; background: #f8f9fa; border-radius: 4px; font-size: 13px;">No items selected</div>
+          </div>`
+
         case "slider":
           return `
           <div class="interactive-element">
@@ -780,6 +822,162 @@ Return ONLY a JSON array of level objects:
             </div>
           </div>`
 
+        case "calculator":
+          return `
+          <div class="interactive-element">
+            <h4>${element.title}</h4>
+            <p>${element.description}</p>
+            <div class="calculator-container" id="${element.id}_calculator">
+              ${
+                element.config.inputs
+                  ?.map(
+                    (input, idx) => `
+                <div class="calculator-input">
+                  <label>${input.label}:</label>
+                  <input type="number" id="${element.id}_input_${idx}" 
+                         placeholder="Enter ${input.label.toLowerCase()}"
+                         oninput="calculateResult('${element.id}', '${element.variableName}', '${(element.config.formula || 'value1 + value2').replace(/'/g, "\\'")}', '${element.config.resultLabel || 'Result'}')"
+                         class="form-input">
+                </div>
+              `,
+                  )
+                  .join("") || ""
+              }
+              <div class="calculator-result" id="${element.id}_result">
+                <strong>${element.config.resultLabel || "Result"}: </strong>
+                <span id="${element.id}_result_value">-</span>
+              </div>
+            </div>
+          </div>`
+
+        case "priorityRanking":
+          return `
+          <div class="interactive-element">
+            <h4>${element.title}</h4>
+            <p>${element.description}</p>
+            <div class="priority-ranking-container" id="${element.id}_ranking">
+              <p style="margin-bottom: 15px; color: #6c757d; font-style: italic;">
+                Drag and drop items to rank them by priority (1 = highest priority):
+              </p>
+              <div class="ranking-list" id="${element.id}_list" style="min-height: 200px;">
+                ${
+                  element.config.options
+                    ?.map(
+                      (opt, idx) => `
+                  <div class="ranking-item" data-value="${opt.value}" draggable="true" 
+                       style="display: block; background: #f8f9fa; border: 1px solid #dee2e6; padding: 12px; margin: 4px 0; border-radius: 6px; cursor: move; user-select: none; transition: all 0.2s ease;"
+                       onmousedown="this.style.cursor='grabbing'"
+                       onmouseup="this.style.cursor='move'"
+                       ondragstart="dragStart_${element.id}(event)" 
+                       ondragover="dragOver_${element.id}(event)" 
+                       ondragenter="dragEnter_${element.id}(event)"
+                       ondragleave="dragLeave_${element.id}(event)"
+                       ondrop="drop_${element.id}(event)"
+                       ondragend="dragEnd_${element.id}(event)">
+                    <span style="font-weight: bold; color: #007bff; margin-right: 10px; min-width: 20px; display: inline-block;">
+                      ${idx + 1}.
+                    </span>
+                    <span style="color: #495057;">
+                      ${opt.label}
+                    </span>
+                  </div>
+                `,
+                    )
+                    .join("") || ""
+              }
+              </div>
+              <script>
+                var draggedElement_${element.id} = null;
+                
+                function dragStart_${element.id}(event) {
+                  draggedElement_${element.id} = event.target;
+                  event.target.style.opacity = '0.5';
+                  event.dataTransfer.effectAllowed = 'move';
+                }
+                
+                function dragEnter_${element.id}(event) {
+                  event.preventDefault();
+                  if (event.target.closest('.ranking-item') && event.target.closest('.ranking-item') !== draggedElement_${element.id}) {
+                    event.target.closest('.ranking-item').style.borderColor = '#007bff';
+                    event.target.closest('.ranking-item').style.backgroundColor = '#e3f2fd';
+                  }
+                }
+                
+                function dragOver_${element.id}(event) {
+                  event.preventDefault();
+                  event.dataTransfer.dropEffect = 'move';
+                }
+                
+                function dragLeave_${element.id}(event) {
+                  if (event.target.closest('.ranking-item')) {
+                    event.target.closest('.ranking-item').style.borderColor = '#dee2e6';
+                    event.target.closest('.ranking-item').style.backgroundColor = '#f8f9fa';
+                  }
+                }
+                
+                function drop_${element.id}(event) {
+                  event.preventDefault();
+                  var target = event.target.closest('.ranking-item');
+                  var list = document.getElementById('${element.id}_list');
+                  
+                  if (target && draggedElement_${element.id} && target !== draggedElement_${element.id}) {
+                    var rect = target.getBoundingClientRect();
+                    var midpoint = rect.top + rect.height / 2;
+                    
+                    if (event.clientY < midpoint) {
+                      list.insertBefore(draggedElement_${element.id}, target);
+                    } else {
+                      list.insertBefore(draggedElement_${element.id}, target.nextSibling);
+                    }
+                    
+                    updateRankingNumbers_${element.id}();
+                    updateVariable('${element.variableName}', getRankingOrder_${element.id}());
+                  }
+                  
+                  // Clean up styles
+                  var items = document.querySelectorAll('#${element.id}_list .ranking-item');
+                  items.forEach(function(item) {
+                    item.style.borderColor = '#dee2e6';
+                    item.style.backgroundColor = '#f8f9fa';
+                    item.style.opacity = '1';
+                  });
+                }
+                
+                function dragEnd_${element.id}(event) {
+                  event.target.style.opacity = '1';
+                  var items = document.querySelectorAll('#${element.id}_list .ranking-item');
+                  items.forEach(function(item) {
+                    item.style.borderColor = '#dee2e6';
+                    item.style.backgroundColor = '#f8f9fa';
+                  });
+                  draggedElement_${element.id} = null;
+                }
+                
+                function updateRankingNumbers_${element.id}() {
+                  var items = document.querySelectorAll('#${element.id}_list .ranking-item');
+                  items.forEach(function(item, index) {
+                    var numberSpan = item.querySelector('span:first-child');
+                    if (numberSpan) {
+                      numberSpan.textContent = (index + 1) + '.';
+                    }
+                  });
+                }
+                
+                function getRankingOrder_${element.id}() {
+                  var items = document.querySelectorAll('#${element.id}_list .ranking-item');
+                  var ranking = [];
+                  items.forEach(function(item) {
+                    var value = item.getAttribute('data-value');
+                    if (value) {
+                      ranking.push(value);
+                    }
+                  });
+                  return ranking;
+                }
+              </script>
+            </div>
+          </div>`
+
         default:
           return `
           <div class="interactive-element">
@@ -789,7 +987,6 @@ Return ONLY a JSON array of level objects:
           </div>`
       }
     }
-
 
     const generateLevelHTML = (level, index) => {
       return `
