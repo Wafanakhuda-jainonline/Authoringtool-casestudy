@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import InstructionsModal from './components/InstructionsModal'
 import {
   Plus,
   Trash2,
@@ -39,7 +40,7 @@ const CaseStudyAuthoringTool = () => {
     variables: [],
     theme: "modern",
   })
-
+const [showInstructions, setShowInstructions] = useState<boolean>(false)
   const [currentLevel, setCurrentLevel] = useState(null)
   const [isLLMAssisting, setIsLLMAssisting] = useState(false)
   const [llmSuggestion, setLLMSuggestion] = useState("")
@@ -693,7 +694,12 @@ Return ONLY a JSON array of level objects:
     }
     input.click()
   }
-
+const applyBasicMarkdown = (text: string) => {
+  if (!text) return "";
+  return text
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") // bold
+    .replace(/`([^`]+)`/g, "<code>$1</code>");         // inline code
+};
   const generateHTMLExport = () => {
     if (!caseStudy.title || caseStudy.levels.length === 0) {
       alert("Please add a title and at least one level before generating HTML.")
@@ -701,26 +707,26 @@ Return ONLY a JSON array of level objects:
     }
 
     // Function to process narrative text and replace variables
-    const processNarrativeText = (text) => {
-      if (!text) return "";
-      let processedText = text;
-      
-      // Replace {{variableName}} with JavaScript template for dynamic replacement
-      caseStudy.variables.forEach(variable => {
-        const regex = new RegExp(`\\{\\{${variable.name}\\}\\}`, 'g');
-        processedText = processedText.replace(regex, `<span class="variable-value" data-variable="${variable.name}">{{${variable.name}}}</span>`);
-      });
-      
-      return processedText;
-    };
+     const processNarrativeText = (text: string) => {
+    if (!text) return "";
+    let processedText = text;
+    caseStudy.variables.forEach((variable) => {
+      const regex = new RegExp(`\\{\\{${variable.name}\\}\\}`, "g");
+      processedText = processedText.replace(
+        regex,
+        `<span class="variable-value" data-variable="${variable.name}">{{${variable.name}}}</span>`
+      );
+    });
+    return processedText;
+  };
 
 const generateInteractiveElementHTML = (element) => {
       switch (element.type) {
         case "textInput":
-          return `
-          <div class="interactive-element">
-            <h4>${element.title}</h4>
-            <p>${element.description}</p>
+         return `
+      <div class="interactive-element">
+        <h4>${applyBasicMarkdown(element.title)}</h4>
+        <p>${applyBasicMarkdown(element.description)}</p>
             <input type="text" id="${element.id}" data-variable="${element.variableName}" 
                    placeholder="${(element.config.placeholder || "").replace(/"/g, '&quot;')}" 
                    maxlength="${element.config.maxLength || 255}"
@@ -801,7 +807,7 @@ const generateInteractiveElementHTML = (element) => {
                   .join("") || ""
               }
             </div>
-            <div class="multi-select-summary" id="${element.id}_summary" style="margin-top: 12px; padding: 8px; background: #f8f9fa; border-radius: 4px; font-size: 13px;">No items selected</div>
+            <div class="multi-select-summary" id="${element.id}_summary" style="margin-top: 12px; padding: 8px; background: #f8f9fa; border-radius: 4px; font-size: 13px;"></div>
           </div>`
 
         case "slider":
@@ -990,12 +996,16 @@ const generateInteractiveElementHTML = (element) => {
 
     const generateLevelHTML = (level, index) => {
       return `
-      <div class="level ${index === 0 ? "active" : ""}" data-id="${level.id}" data-index="${index}">
-        <h2>${level.title}</h2>
+         <div class="level ${index === 0 ? "active" : ""}" data-id="${level.id}" data-index="${index}">
+        <h2>${applyBasicMarkdown(level.title)}</h2>
         <div class="level-content">
-          <div class="narrative-content">${processNarrativeText(level.content.narrative || "")}</div>
-          
-          ${level.content.interactiveElements?.map((element) => generateInteractiveElementHTML(element)).join("") || ""}
+          <div class="narrative-content">${applyBasicMarkdown(
+            processNarrativeText(level.content.narrative || "")
+          )}</div>
+
+          ${level.content.interactiveElements
+            ?.map((element) => generateInteractiveElementHTML(element))
+            .join("") || ""}
           
           <div class="choices">
             ${
@@ -1011,17 +1021,15 @@ const generateInteractiveElementHTML = (element) => {
                     };
                     
                     // Double encode to be safe
-                    const encodedChoiceData = encodeURIComponent(JSON.stringify(choiceData));
-                    
-                    return `
-              <button class="choice-btn" 
-                      data-choice="${encodedChoiceData}"
-                      onclick="handleChoiceClick(this)">
-                ${choice.text.replace(/"/g, '&quot;')}
-              </button>
-            `;
-                  }
-                )
+                     const encodedChoiceData = encodeURIComponent(JSON.stringify(choiceData));
+                  return `
+                    <button class="choice-btn"
+                        data-choice="${encodedChoiceData}"
+                        onclick="handleChoiceClick(this)">
+                      ${applyBasicMarkdown(choice.text)}
+                    </button>
+                  `;
+                })
                 .join("") || ""
             }
           </div>
@@ -2136,6 +2144,17 @@ const generateInteractiveElementHTML = (element) => {
               <Eye size={18} />
               Preview
             </button>
+            <button onClick={() => setShowInstructions(true)}              className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+>
+  <BookOpen size={18} />
+  Instructions
+</button>
+
+
+<InstructionsModal 
+  isOpen={showInstructions} 
+  onClose={() => setShowInstructions(false)} 
+/>
           </div>
         </div>
 
